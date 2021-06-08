@@ -1,0 +1,26 @@
+ReadFile.java:
+
+Se implementó el método transferir, el cual recibe los numeros de cuenta de origen y destino para poder obtener las cuentas correspondientes
+mediante la llamada al método getCuenta, luego comprueba que la cuentas existan (no sean null) para poder hacer la transferencia, además evitar
+una NullPointerException por dereferencia.
+
+Hice las siguientes modificaciones en el ReadFile para manejar excepciones:
+- En la línea 78, agregue un if statement para comprobar que la cuenta a la que se le quiere agregar dinero exista (no sea null) y no se lanze una NullPointerException.
+- En la línea 75, había hecho lo mismo cuando se cobra el Fondo Mutuo, sin embargo no sabía que forma de manejar excepciones les interesaba evaluar y me parecía una mejor opción
+manejarla dentro del mismo método cobrar con un try/catch. De esta manera estas dos situaciones poseen distintas maneras de manejar la excepción NullPointerException.
+- En la línea 84, para retirar dinero se usa el mismo método usado en la línea 78 para manejar la NullPointerException, pero perfectamente se podria haber usado el otro método.
+
+Makefile:
+
+Se creó un makefile que por default (usando simplemente "make") compila todos los .java, creando los .class correspondientes a cada uno.
+Tambien permite limpiar los .class si usamos "make clean" y crear un jar "jabank.jar" si usamos "make jar" (sin embargo este último no lo testee y lo agregué por si las moscas)
+
+Una vez compilados los archivos .java, para probar los casos de prueba se siguió el formato especificado, es decir, por ejemplo, para probar el caso all_in.jaBank, se debe escribir por consola: java ReadFile test_cases/all_in.jaBank. 
+(En outputsEsperados.txt se especifica que el comando es java ReadFile .\test_cases\cuenta1.jaBank pero esto no funciona y supongo que es una confusión con los backslash)
+
+
+Algunas ideas sobre el código:
+
+- Al manejar la mayoría de excepciones, se me ocurre que se podría pedir al usuario modificar directamente el archivo de texto por consola si es que este posee algun error (por ejemplo que la cuenta no exista) cosa que le evitaría tener que ir a editar el archivo, guardarlo y ejecutar el programa nuevamente.
+- No entendí bien a que se referían exactamente con lo de los "codigos hacker", supuse que era una forma de evaluar como tratamos con los modificadores de acceso, sin embargo por la naturaleza de como estaba hecho el ReadFile no pude encontrar la forma de restringir más los métodos (casi todos son llamados en algun momento fuera de su clase y esto impide hacerlos private).
+- Estaba tratando de implementar una forma de que cuando el cliente ingrese un comando para retirar dinero o interactuar con una cuenta que no existe, se lanze una excepción que le indique que esta cuenta no existe y que ingrese una nueva para modificar el archivo de texto inmediatamente, sin embargo por motivos de tiempo no alcanzé.

@@ -1,0 +1,7 @@
+crearCuentaVista 10000000
+verTotal
+crearCuentaCorriente 999
+verTotal
+crearDepósitoAPlazo 1000000 4 10
+actualizarDía
+retirar 1000 5
